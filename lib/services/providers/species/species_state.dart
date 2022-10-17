@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:starwars_apps/models/species/species_response.dart';
 import 'package:starwars_apps/models/species/species_result.dart';
 import 'package:starwars_apps/services/repository/api_services.dart';
@@ -30,6 +29,7 @@ class SpeciesProvider extends ChangeNotifier {
     }
     List<SpeciesResult>? species = response.results;
     speciesList.addAll(species!);
+    isLoading = false;
     notifyListeners();
   }
 
@@ -37,18 +37,21 @@ class SpeciesProvider extends ChangeNotifier {
     if (scrollController!.offset >=
             scrollController!.position.maxScrollExtent &&
         !scrollController!.position.outOfRange) {
-      nextPage = "reach the bottom";
-      print(activePage++);
+      nextPage = "";
       if (hasMoreData) {
+        // print(activePage++);
+        isLoading = true;
         getInisialData(activePage);
       } else {
+        isLoading = false;
         nextPage = "No More Data";
       }
     }
     if (scrollController!.offset <=
             scrollController!.position.minScrollExtent &&
         scrollController!.position.outOfRange) {
-      nextPage = "reach the top";
+      isLoading = false;
+      nextPage = "";
     }
     notifyListeners();
   }
