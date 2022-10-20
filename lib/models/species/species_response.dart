@@ -30,4 +30,6 @@ class SpeciesResponse {
     }
     return data;
   }
+
+  SpeciesResponse.withError(String error) : next = "No more data";
 }

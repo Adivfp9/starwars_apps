@@ -10,16 +10,19 @@ class SpeciesProvider extends ChangeNotifier {
   bool isLoading = false, hasMoreData = true;
   int currentPage = 1, activePage = 1, totalPages = 0;
   String? nextPage = '';
+  String? imgSource = '';
   List<SpeciesResult> speciesList = [];
   List tmpList = [];
 
   SpeciesProvider() {
+    imgSource = _apiService.imgSource;
     getInisialData(activePage);
     scrollController = ScrollController();
     scrollController!.addListener(_scrollListener);
   }
 
   getInisialData(activePage) async {
+    isLoading = true;
     SpeciesResponse response = await _apiService.getAllSpecies(activePage);
     totalPages = (response.count! / 10).ceil();
     if (response.next != null && response.next != '') {
@@ -34,15 +37,15 @@ class SpeciesProvider extends ChangeNotifier {
   }
 
   _scrollListener() {
-    if (scrollController!.offset >=
-            scrollController!.position.maxScrollExtent &&
-        !scrollController!.position.outOfRange) {
+    if (scrollController!.position.pixels ==
+        scrollController!.position.maxScrollExtent) {
       nextPage = "";
       if (hasMoreData) {
-        // print(activePage++);
+        activePage++;
         isLoading = true;
         getInisialData(activePage);
       } else {
+        activePage = totalPages;
         isLoading = false;
         nextPage = "No More Data";
       }
@@ -52,6 +55,7 @@ class SpeciesProvider extends ChangeNotifier {
         scrollController!.position.outOfRange) {
       isLoading = false;
       nextPage = "";
+      hasMoreData = false;
     }
     notifyListeners();
   }

@@ -33,8 +33,10 @@ dependencies:
   dio: ^4.0.6
   flutter:
     sdk: flutter
+  pretty_dio_logger: ^1.1.1
   provider: ^6.0.4
   shared_preferences: ^2.0.15
+  stroke_text: ^0.0.2
   toast: ^0.3.0
 
 dev_dependencies:
@@ -50,7 +52,38 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  # To add assets to your application, add an assets section, like this:
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: assets/fonts/Raleway-Regular.ttf
+        - asset: assets/fonts/Raleway-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Raleway-Black.ttf
+          weight: 900
+
+    - family: RobotoCondensed
+      fonts:
+        - asset: assets/fonts/RobotoCondensed-Regular.ttf
+        - asset: assets/fonts/RobotoCondensed-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/RobotoCondensed-Light.ttf
+          weight: 300
+        - asset: assets/fonts/RobotoCondensed-Italic.ttf
+          weight: 300
+    - family: NunitoSans
+      fonts:
+        - asset: assets/fonts/NunitoSans-Regular.ttf
+        - asset: assets/fonts/NunitoSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/NunitoSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/NunitoSans-Italic.ttf
+          weight: 300
+
+    - family: CustomIcon
+      fonts:
+        - asset: assets/fonts/eye_off.ttf
+    # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
   #   - images/a_dot_ham.jpeg

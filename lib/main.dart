@@ -18,10 +18,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: Colors.red,
-        scaffoldBackgroundColor: Colors.grey[850],
+        scaffoldBackgroundColor: Colors.grey[900],
+        fontFamily: 'Nunito',
       ),
+      initialRoute: '/',
       onGenerateRoute: Routes.generateRoute,
-      home: const SpeciesPage(),
+      // home: const SpeciesPage(),
     );
   }
 }
